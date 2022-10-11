@@ -1,5 +1,5 @@
-from PyTorchDiscreteFlows.discrete_flows.made import MADE
-from PyTorchDiscreteFlows.discrete_flows.disc_models import *
+from discrete_flows.made import MADE
+from discrete_flows.disc_models import *
 
 import numpy as np
 

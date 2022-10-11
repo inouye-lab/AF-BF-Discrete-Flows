@@ -1,10 +1,10 @@
 import torch
 import tensorflow as tf
 #import edward2 as ed
-from org_edward2_made import MADE as ed_MADE_org
+from .org_edward2_made import MADE as ed_MADE_org
 import numpy as np
-from disc_utils import one_hot, one_hot_argmax, multiplicative_inverse, one_hot_add, one_hot_minus, one_hot_multiply
-from made import MADE
+from .disc_utils import one_hot, one_hot_argmax, multiplicative_inverse, one_hot_add, one_hot_minus, one_hot_multiply
+from .made import MADE
 vocab_size =90
 input_shape = [10, 4, vocab_size]
 tf_made = ed_MADE_org(vocab_size, hidden_dims=[20, 20])

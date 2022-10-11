@@ -14,11 +14,11 @@ import random
 import time
 import os
 
-import PyTorchDiscreteFlows.discrete_flows.disc_utils as disc_utils
-from PyTorchDiscreteFlows.discrete_flows.made import MADE
-from PyTorchDiscreteFlows.discrete_flows.mlp import MLP
-from PyTorchDiscreteFlows.discrete_flows.embed import EmbeddingLayer
-from PyTorchDiscreteFlows.discrete_flows.disc_models import *
+import discrete_flows.disc_utils as disc_utils
+from discrete_flows.made import MADE
+from discrete_flows.mlp import MLP
+from discrete_flows.embed import EmbeddingLayer
+from discrete_flows.disc_models import *
 
 from preprocess import *
 from train_utils import *
