@@ -6,11 +6,11 @@ And modified for PyTorch.
 """
 import torch
 import torch.nn.functional as F
-from torch import nn
 import numpy as np
 
 def one_hot(inputs, vocab_size = None):
     """Returns one hot of data over each element of the inputs"""
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     if vocab_size is None:
         vocab_size = inputs.max() + 1
     input_shape = inputs.shape
