@@ -263,7 +263,7 @@ def Train_copula(device, copula_data_path, disc_layer_type, epoch, hidden_layer=
         print(k_fold, '-fold: ', k_fold_idx + 1)
         train_data, test_data = kfold_splitter(data=data, n=sample_size, k=k_fold, fold_num=k_fold_idx)
         print(train_data.shape)
-        data = DATA(data)
+        data = DATA(train_data)
         data_loader = torch.utils.data.DataLoader(dataset=data,
                                                   batch_size=batch_size,
                                                   shuffle=True,

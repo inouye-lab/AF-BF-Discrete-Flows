@@ -40,20 +40,20 @@ elif parse.exp == 4:
     Train_synth_data(k=10, d=5, n_samples=10000, disc_layer_type='autoreg', epoch=100, batch_size=1024, hidden_layer=64, path='exp4', save=True, test_per_epoch=True, af='linear', alpha=1, beta=1, id_init=False, k_fold=5, manual_prob=False)
 elif parse.exp == 5:
     #exp6
-    Train_copula(device, copula_data_path='../data/coup_data_4_2_strong_corr.npy', disc_layer_type='bipartite', epoch=100, path='exp5', alpha=1, beta=8, id_init=False)
-    Train_copula(device, copula_data_path='../data/coup_data_4_2_strong_corr.npy', disc_layer_type='autoreg', epoch=100, hidden_layer=64, path='exp5', alpha=1, beta=16, id_init=False)
+    Train_copula(device, copula_data_path='../data/coup_data_4_2_weak_corr.npy', disc_layer_type='bipartite', epoch=100, path='exp5', alpha=1, beta=8, id_init=False)
+    Train_copula(device, copula_data_path='../data/coup_data_4_2_weak_corr.npy', disc_layer_type='autoreg', epoch=100, hidden_layer=64, path='exp5', alpha=1, beta=16, id_init=False)
 elif parse.exp == 6:
     #exp7
-    Train_copula(device, copula_data_path='../data/coup_data_4_2_strong_corr.npy', disc_layer_type='bipartite', epoch=100, path='exp6', alpha=1, beta=8, id_init=False)
-    Train_copula(device, copula_data_path='../data/coup_data_4_2_strong_corr.npy', disc_layer_type='autoreg', epoch=100, hidden_layer=64, path='exp6', alpha=1, beta=16, id_init=False)
+    Train_copula(device, copula_data_path='../data/coup_data_4_2_moderate_corr.npy', disc_layer_type='bipartite', epoch=100, path='exp6', alpha=1, beta=8, id_init=False)
+    Train_copula(device, copula_data_path='../data/coup_data_4_2_moderate_corr.npy', disc_layer_type='autoreg', epoch=100, hidden_layer=64, path='exp6', alpha=1, beta=16, id_init=False)
 elif parse.exp == 7:
     #exp8
     Train_copula(device, copula_data_path='../data/coup_data_4_2_strong_corr.npy', disc_layer_type='bipartite', epoch=100, path='exp7', alpha=1, beta=8, id_init=False)
     Train_copula(device, copula_data_path='../data/coup_data_4_2_strong_corr.npy', disc_layer_type='autoreg', epoch=100, hidden_layer=64, path='exp7', alpha=1, beta=16, id_init=False)
 elif parse.exp == 8:
     #exp9
-    Train_copula(device, copula_data_path='../data/coup_data_4_2_strong_corr.npy', disc_layer_type='bipartite', epoch=100, path='exp8', alpha=1, beta=8, id_init=False)
-    Train_copula(device, copula_data_path='../data/coup_data_4_2_strong_corr.npy', disc_layer_type='autoreg', epoch=100, hidden_layer=64, path='exp8', alpha=1, beta=16, id_init=False)
+    Train_copula(device, copula_data_path='../data/coup_data_4_2.npy', disc_layer_type='bipartite', epoch=100, path='exp8', alpha=1, beta=8, id_init=False)
+    Train_copula(device, copula_data_path='../data/coup_data_4_2.npy', disc_layer_type='autoreg', epoch=100, hidden_layer=64, path='exp8', alpha=1, beta=16, id_init=False)
 elif parse.exp == 9:
     mushroom_data_path = '../data/agaricus-lepiota.data'
 
