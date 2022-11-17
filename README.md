@@ -49,10 +49,10 @@ The experment sections will output an average and standard deviation of the nega
 - preprocess.py : contains functions that loads in or creates data for the experiments. This file also includes a dataloader
 and data processing functions.
 - train_utils.py : contains all the experiment training functions.
-- PyTorchDiscreteFlows: This was a downloaded discrete flow folder in github (https://github.com/TrentBrick/PyTorchDiscreteFlows.git). 
+- discrete_flows: Forked discrete flow folder in github (https://github.com/TrentBrick/PyTorchDiscreteFlows.git). 
   - Modified files
-      - PyTorchDiscreteFlows/discrete_flows/disc_models.py: a linear layer network class was added and the DiscreteBipartiteFlow class has been        completely revamped for our experiment.
-      - PyTorchDiscreteFlows/discrete_flows/disc_utils.py: this python file was modified to run on cuda.
-      - PyTorchDiscreteFlows/discrete_flows/made.py: this python file was modified to run on cuda.
+      - discrete_flows/disc_models.py: a linear layer network class was added and the DiscreteBipartiteFlow class has been        completely revamped for our experiment.
+      - discrete_flows/disc_utils.py: this python file was modified to run on cuda.
+      - discrete_flows/made.py: this python file was modified to run on cuda.
 
 
