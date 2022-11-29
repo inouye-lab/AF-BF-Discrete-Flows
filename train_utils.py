@@ -258,7 +258,7 @@ def Train_copula(device, copula_data_path, disc_layer_type, epoch, hidden_layer=
     test_store_loss = []
     copula_data = np.load(copula_data_path)
 
-    sample_size = data.shape[0]
+    sample_size = copula_data.shape[0]
     for k_fold_idx in range(k_fold):
         print(k_fold, '-fold: ', k_fold_idx + 1)
         train_data, test_data = kfold_splitter(data=copula_data, n=sample_size, k=k_fold, fold_num=k_fold_idx)
