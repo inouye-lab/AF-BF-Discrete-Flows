@@ -214,6 +214,7 @@ path = 'Model/Copula/Exp9/bipartite/'
 find_min_test_loss(data, path, 5, vocab_size=vocab_size, sequence_length=sequence_length, disc_layer_type='bipartite', hidden_layer=64, id=False, beta=8)
 '''
 
+'''
 batch_size, sequence_length, vocab_size, k_fold = 1024, 22, 12, 5
 data = process_mushroom_data('agaricus-lepiota.data')
 path = batch_size, sequence_length, vocab_size, k_fold = 1024, 22, 12, 5
@@ -234,3 +235,4 @@ find_min_test_loss(data, path, 5, vocab_size=vocab_size, sequence_length=sequenc
 
 path = 'Model/Mushroom/Bipartite/Non_Identity/Straight_Layer/beta_8/'
 find_min_test_loss(data, path, 5, vocab_size=vocab_size, sequence_length=sequence_length, disc_layer_type='bipartite', id=False, beta=8, alpha=1)
+'''
