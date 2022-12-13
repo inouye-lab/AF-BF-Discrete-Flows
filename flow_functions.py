@@ -355,11 +355,11 @@ def train_disc_flow(device, model, data, base_log_probs, vocab_size, temp_decay,
 
     if save:
         losses = np.array(losses)
-        np.save(save_path + '_losses.npy', losses)
-        np.save(save_path + '_epoch_test_loss.npy', epoch_test_loss)
-        np.save(save_path + '_epoch_train_time.npy', epoch_train_time)
-        np.save(save_path + '_epoch_test_time.npy', epoch_test_time)
-        np.save(save_path + '_avg_epoch_train_loss.npy', avg_epoch_train_loss)
+        np.save('result/' + save_path + '_losses.npy', losses)
+        np.save('result/' + save_path + '_epoch_test_loss.npy', epoch_test_loss)
+        np.save('result/' + save_path + '_epoch_train_time.npy', epoch_train_time)
+        np.save('result/' + save_path + '_epoch_test_time.npy', epoch_test_time)
+        np.save('result/' + save_path + '_avg_epoch_train_loss.npy', avg_epoch_train_loss)
         '''
         torch.save({
                         'epoch': e,
