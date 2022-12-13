@@ -312,7 +312,7 @@ def train_toy_dataset(disc_layer_type):
       train_data, test_data = Mai_create_X_train_test(data, 4/5, 5, i)
       test_data = test_data.numpy()
 
-      toy = DATA(data)
+      toy = DATA(test_data)
       toy_loader = torch.utils.data.DataLoader(dataset=toy,
                                     batch_size=batch_size,
                                     shuffle=True,

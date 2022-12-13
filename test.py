@@ -21,6 +21,7 @@ import time
 import os
 from preprocessing import *
 from train_utils import *
+import argparse
 
 seed = 42
 random.seed(seed)
@@ -34,6 +35,11 @@ torch.backends.cudnn.benchmark = False
 torch.backends.cudnn.deterministic = True
 os.environ['PYTHONHASHSEED'] = str(seed)
 DEBUG = False
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--exp', type=int)
+parse = parser.parse_args()
+
 
 def find_min_test_loss(data, path, kfold, vocab_size, sequence_length, disc_layer_type, hidden_layer=0, alpha=1, beta=1, id=True):
     device = torch.device('cpu')
