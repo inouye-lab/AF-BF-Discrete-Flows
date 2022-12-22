@@ -368,7 +368,7 @@ def train_disc_flow(device, model, data, base_log_probs, vocab_size, temp_decay,
                         'optimizer_state_dict': optimizer.state_dict(),
                         'loss': loss}, path_name)
         '''
-
+    print('epoch_train_time: ' + str(np.sum(epoch_train_time)))
     return min_loss, total_time, path_name, model, base_log_probs
 
 def count_parameters(model):
@@ -415,3 +415,25 @@ def test_disc_flow(device, data, vocab_size, sequence_length, disc_layer_type, h
         del model
         del base_log_probs
     return loss.item(), final_time
+
+def find_min_test_loss(data, path, kfold, vocab_size, sequence_length, disc_layer_type, load_model=None, hidden_layer=0, alpha=1, beta=1, id=True):
+    device = torch.device('cpu')
+
+    total_loss = []
+    total_time = []
+    for kfold_idx in range(kfold):
+        train_data, test_data = Mai_create_X_train_test(data, 4 / 5, kfold, kfold_idx)
+        loss, time = test_disc_flow(device, test_data, vocab_size, sequence_length, disc_layer_type, hidden_layer, load_model=load_model, load_path=path + 'k' + str(kfold) + '_' + str(kfold_idx) + '.pt', alpha=alpha, beta=beta, id=id)
+        total_loss.append(loss)
+        total_time.append(time)
+    total_loss = np.array(total_loss)
+    total_time = np.array(total_time)
+
+    print('Average Min Loss')
+    print(np.average(total_loss))
+    print('Std Min Loss')
+    print(np.std(total_loss))
+    print('Average Time')
+    print(np.average(total_time))
+    print('Std Time')
+    print(np.std(total_time))

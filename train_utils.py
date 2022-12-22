@@ -14,7 +14,7 @@ def Train_MNIST(digit, disc_layer_type, batch_size, epoch, hidden_layer=0, temp_
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     #device = torch.device('cpu')
 
-    train_data, test_data = Mai_create_X_train_test(preprocess_binary_mnist(), 4 / 5, 3, kfold)
+    train_data, test_data = Mai_create_X_train_test(preprocess_binary_mnist(), 2 / 3, 3, kfold)
     print(train_data.shape)
     mnist = DATA(train_data)
     MNIST_loader = torch.utils.data.DataLoader(dataset=mnist,
@@ -295,7 +295,9 @@ def Train_copula(device, copula_data_path, disc_layer_type, epoch, hidden_layer=
                                                             test_data=test_data, update_temp=False,
                                                             data_size=train_data.shape[0])
 
-
+    find_min_test_loss(copula_data, path='result/' + str(path) + '_' + str(disc_layer_type) + '_', kfold=k_fold,
+                       vocab_size=vocab_size, load_model=model, sequence_length=sequence_length,
+                       disc_layer_type=disc_layer_type, hidden_layer=hidden_layer)
 
 def train_toy_dataset(disc_layer_type):
     CNN = False
@@ -331,6 +333,9 @@ def train_toy_dataset(disc_layer_type):
                                                     batch_size=batch_size, epochs=100, learning_rate=0.01,
                                                     test_per_epoch=True, dataloader=True, CNN=False,
                                                     save=True, update_temp=False, data_size=12000*0.8)
+    find_min_test_loss(data.numpy(), path='result/exp1_' + str(disc_layer_type) + '_', kfold=5, vocab_size=vocab_size,
+                       load_model=model, sequence_length=sequence_length, disc_layer_type=disc_layer_type,
+                       hidden_layer=hidden_layer)
 
 
 def Train_cityscapes(disc_layer_type, batch_size, epoch, hidden_layer=0, path='', save=True, test_per_epoch=True,
