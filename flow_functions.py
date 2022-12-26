@@ -379,8 +379,12 @@ def test_disc_flow(device, data, vocab_size, sequence_length, disc_layer_type, h
     batch_size = data.shape[0]
 
     if is_load_path:
-        model = disc_flow_param(num_flows=4, temp=0.1, vocab_size=vocab_size, sequence_length=sequence_length, batch_size=batch_size, disc_layer_type=disc_layer_type,
-                             hid_lay=hidden_layer, CNN=False, af='linear', alpha=alpha, beta=beta, id=id)
+        if load_model is not None:
+            model = load_model
+        else:
+            model = disc_flow_param(num_flows=4, temp=0.1, vocab_size=vocab_size, sequence_length=sequence_length,
+                                    batch_size=batch_size, disc_layer_type=disc_layer_type,
+                                    hid_lay=hidden_layer, CNN=False, af='linear', alpha=alpha, beta=beta, id=id)
         open_path = torch.load(load_path, map_location=torch.device('cpu'))
         model.load_state_dict(open_path['model_state_dict'])
         base_log_probs = open_path['prior']
