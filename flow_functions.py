@@ -1,5 +1,6 @@
 from discrete_flows.made import MADE
 from discrete_flows.disc_models import *
+from preprocess import *
 
 import numpy as np
 
@@ -438,6 +439,6 @@ def find_min_test_loss(data, path, kfold, vocab_size, sequence_length, disc_laye
     print('Std Min Loss')
     print(np.std(total_loss))
     print('Average Time')
-    print(np.average(total_time))
+    print(np.average(total_time[-1]))
     print('Std Time')
     print(np.std(total_time))

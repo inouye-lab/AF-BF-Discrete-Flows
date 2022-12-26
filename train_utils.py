@@ -1,6 +1,5 @@
 from preprocess import *
 from flow_functions import *
-from preprocess import *
 
 
 import numpy as np
@@ -47,7 +46,7 @@ def Train_MNIST(digit, disc_layer_type, batch_size, epoch, hidden_layer=0, temp_
     loss, final_time, load_path, model, base_log_probs = train_disc_flow(device=device, model=model, data=MNIST_loader,
                                                   base_log_probs=base_log_probs, vocab_size=vocab_size,
                                                   test_per_epoch=test_per_epoch, temp_decay=temp_decay,
-                                                  lr_decay=lr_decay, save_path=str(path) + 'MNIST',
+                                                  lr_decay=lr_decay, save_path=str(path) + '_MNIST_',
                                                   k_fold='3', k_fold_idx=kfold, batch_size=batch_size,
                                                   epochs=epoch, learning_rate=0.01, dataloader=True, CNN=CNN, dim=dim,
                                                   save=save, test_data=test_data, update_temp=False,
@@ -55,10 +54,15 @@ def Train_MNIST(digit, disc_layer_type, batch_size, epoch, hidden_layer=0, temp_
     #train_store_min_loss.append(loss.cpu().clone().detach().numpy())
     #train_store_time.append(final_time)
 
+    min_test_loss(preprocess_binary_mnist(), path='result/' + str(path) + '_MNIST_', kfold=k_fold,
+                  vocab_size=vocab_size, load_model=model, sequence_length=sequence_length,
+                  disc_layer_type=disc_layer_type, hidden_layer=hidden_layer)
+
     #print("Training Minimum Loss:")
     #print(train_store_min_loss)
     #print("Training Time:")
     #print(train_store_time)
+
 
     if image_process:
         # Sample Pior
@@ -128,7 +132,7 @@ def Train_805(disc_layer_type, batch_size, epoch, hidden_layer=0, path='', save=
                                                                         base_log_probs=base_log_probs,
                                                                         vocab_size=vocab_size,
                                                                         test_per_epoch=test_per_epoch, temp_decay=1,
-                                                                        lr_decay=1, save_path=str(path) + '805',
+                                                                        lr_decay=1, save_path=str(path) + '_805_',
                                                                         k_fold=3, k_fold_idx=kfold,
                                                                         batch_size=batch_size, epochs=epoch,
                                                                         learning_rate=0.01, dataloader=True, CNN=False,
@@ -137,6 +141,9 @@ def Train_805(disc_layer_type, batch_size, epoch, hidden_layer=0, path='', save=
                                                                         data_size=train_data.shape[0])
     # train_store_min_loss.append(loss.cpu().clone().detach().numpy())
     # train_store_time.append(final_time)
+    min_test_loss(preprocess_805_snp_data('805_SNP_1000G_real.hapt.zip'), path='result/' + str(path) + '_805_', kfold=k_fold,
+                  vocab_size=vocab_size, load_model=model, sequence_length=sequence_length,
+                  disc_layer_type=disc_layer_type, hidden_layer=hidden_layer)
 
 
 def Train_synth_data(k, d, n_samples, disc_layer_type, batch_size, epoch, hidden_layer=0, manual_prob=True,
@@ -185,7 +192,7 @@ def Train_synth_data(k, d, n_samples, disc_layer_type, batch_size, epoch, hidden
         loss, final_time, load_path, model, base_log_prob = train_disc_flow(device=device, model=model, data=synth_loader,
                                                       base_log_probs=base_log_probs, vocab_size=vocab_size,
                                                       test_per_epoch=test_per_epoch, temp_decay=1,
-                                                      lr_decay=1, save_path=str(path) + '_' + str(disc_layer_type) + '_' + str(k_fold) + '_' + str(k_fold_idx),
+                                                      lr_decay=1, save_path=str(path) + '_' + str(disc_layer_type) + '_',
                                                       k_fold=k_fold, k_fold_idx=k_fold_idx,
                                                       batch_size=batch_size, epochs=epoch, learning_rate=0.01,
                                                       dataloader=True, CNN=False, dim=None, save=save,
@@ -195,6 +202,9 @@ def Train_synth_data(k, d, n_samples, disc_layer_type, batch_size, epoch, hidden
         #train_store_time.append(final_time)
         #train_store_min_loss.append(loss.cpu().clone().detach().numpy())
         #train_store_time.append(final_time)
+        min_test_loss(data, path='result/' + str(path) + '_' + str(disc_layer_type) + '_', kfold=k_fold,
+                      vocab_size=vocab_size, load_model=model, sequence_length=sequence_length,
+                      disc_layer_type=disc_layer_type, hidden_layer=hidden_layer)
 
 
 def Train_mushroom(device, mushroom_data_path, disc_layer_type, epoch, hidden_layer=0, path='', alpha=1, beta=1, af='linear', id_init=True):
@@ -237,13 +247,17 @@ def Train_mushroom(device, mushroom_data_path, disc_layer_type, epoch, hidden_la
                                                                   base_log_probs=base_log_probs, vocab_size=vocab_size,
                                                                   test_per_epoch=True, temp_decay=1,
                                                                   lr_decay=1,
-                                                                  save_path=str(path) + '_' + str(disc_layer_type) + '_' + str(k_fold) + '_' + str(k_fold_idx),
+                                                                  save_path=str(path) + '_' + str(disc_layer_type) + '_',
                                                                   k_fold=k_fold, k_fold_idx=k_fold_idx,
                                                                   batch_size=batch_size, epochs=epoch,
                                                                   learning_rate=0.01,
                                                                   dataloader=True, CNN=False, dim=None, save=True,
                                                                   test_data=test_data, update_temp=False,
                                                                   data_size=train_data.shape[0])
+
+              min_test_loss(data, path='result/' + str(path) + '_' + str(disc_layer_type) + '_', kfold=k_fold,
+                            vocab_size=vocab_size, load_model=model, sequence_length=sequence_length,
+                            disc_layer_type=disc_layer_type, hidden_layer=hidden_layer)
 
 def Train_copula(device, copula_data_path, disc_layer_type, epoch, hidden_layer=0, path='', alpha=1, beta=1,
                    af='linear', id_init=True):
@@ -288,7 +302,7 @@ def Train_copula(device, copula_data_path, disc_layer_type, epoch, hidden_layer=
                                                             vocab_size=vocab_size,
                                                             test_per_epoch=True, temp_decay=1,
                                                             lr_decay=1,
-                                                            save_path=str(path) + '_' + str(disc_layer_type) + '_' + str(k_fold) + '_' + str(k_fold_idx),
+                                                            save_path=str(path) + '_' + str(disc_layer_type) + '_',
                                                             k_fold=k_fold, k_fold_idx=k_fold_idx,
                                                             batch_size=batch_size, epochs=epoch,
                                                             learning_rate=0.01,
@@ -315,7 +329,7 @@ def train_toy_dataset(disc_layer_type):
       train_data, test_data = Mai_create_X_train_test(data, 4/5, 5, i)
       test_data = test_data.numpy()
 
-      toy = DATA(test_data)
+      toy = DATA(train_data)
       toy_loader = torch.utils.data.DataLoader(dataset=toy,
                                     batch_size=batch_size,
                                     shuffle=True,
@@ -330,7 +344,7 @@ def train_toy_dataset(disc_layer_type):
       loss, final_time, load_path, model, base_log_prob = train_disc_flow(device=device, model=model, data=toy_loader,
                                                     base_log_probs=base_log_probs, vocab_size=vocab_size,
                                                     test_data=test_data, temp_decay=1, lr_decay=1,
-                                                    save_path='exp1_' + str(disc_layer_type) + '_k5_' + str(i), k_fold=5, k_fold_idx=i,
+                                                    save_path='exp1_' + str(disc_layer_type) + '_', k_fold=5, k_fold_idx=i,
                                                     batch_size=batch_size, epochs=100, learning_rate=0.01,
                                                     test_per_epoch=True, dataloader=True, CNN=False,
                                                     save=True, update_temp=False, data_size=12000*0.8)
